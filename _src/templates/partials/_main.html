@@ -1,1 +1,16 @@
-<main class="page__main">@@label</main>
+<main class="page__main">
+  <form class="form" action="get" method="get">
+    <label for="search"></label>
+    <input
+      id="search"
+      type="text"
+      class="main__input js-input"
+      placeholder="¡Encuentra tu serie!"
+    />
+    <button type="button" class="main__button js-button">Buscar</button>
+  </form>
+  <div class="main__container js-container">
+    <div class="fav__container js-fav-container"></div>
+    <div class="list__container js-list-container"></div>
+  </div>
+</main>
