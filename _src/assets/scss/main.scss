@@ -3,3 +3,71 @@ body {
   margin: 0;
   height: 100vh;
 }
+.header__title {
+  font-family: Poppins;
+  color: rgb(74, 74, 216);
+  font-size: 40px;
+}
+
+.main__input {
+  height: 30px;
+  width: 200px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.main__button {
+  height: 30px;
+  width: 70px;
+  border-radius: 5px;
+}
+
+.main__container {
+  display: flex;
+  width: 100%;
+}
+.fav__container {
+  padding: 20px;
+  width: 100%;
+  list-style: none;
+  &__title {
+    font-family: Raleway;
+    color: rgb(67, 67, 238);
+    font-size: 30px;
+  }
+  &__info {
+    background-color: rgb(80, 125, 207);
+    font-family: Raleway;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+  }
+}
+
+.list__container {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  &__title {
+    font-family: Raleway;
+    color: rgb(67, 67, 238);
+    font-size: 30px;
+  }
+  &__info {
+    background-color: white;
+    font-family: Raleway;
+    color: rgb(80, 125, 207);
+    font-size: 20px;
+    text-align: center;
+  }
+}
+
+.fav__serie__colors {
+  background-color: rgb(80, 125, 207);
+  font-family: Raleway;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
