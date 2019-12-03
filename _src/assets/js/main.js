@@ -22,6 +22,8 @@ function getLocalStorage() {
   if (localStorageFavs !== null) {
     favSeries = localStorageFavs;
     paintFavs();
+    listenFavs();
+    listenerRemoveFav();
   } else {
     getServerData();
   }
