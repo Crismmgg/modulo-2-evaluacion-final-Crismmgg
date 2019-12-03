@@ -1,14 +1,17 @@
 /* eslint-disable no-console */
 'use strict';
 
+//CONSTANTES
+
 const inputSearch = document.querySelector('.js-input');
 const listContainer = document.querySelector('.js-list-container-info');
 const button = document.querySelector('.js-button');
 const favContainer = document.querySelector('.js-fav-container-info');
+const resetButton = document.querySelector('.js-reset-button');
 let series = [];
 let favSeries = [];
 
-//local storage
+//LOCAL STORAGE
 
 function setLocalStorage() {
   localStorage.setItem('favSeries', JSON.stringify(favSeries));
@@ -24,7 +27,7 @@ function getLocalStorage() {
   }
 }
 
-//fetch
+//FETCH
 
 function getServerData() {
   fetch(`http://api.tvmaze.com/search/shows?q=${inputSearch.value}`)
@@ -43,7 +46,7 @@ function getServerData() {
     });
 }
 
-//pintar series html
+//PINTAR SERIES
 
 function paintSeries() {
   listContainer.innerHTML = '';
@@ -51,7 +54,7 @@ function paintSeries() {
     const serieContainer = document.createElement('li');
     serieContainer.setAttribute('id', `${series[i].show.id}`);
     // debugger;
-    const index = favSeries.findIndex(function(show, index) {
+    const index = favSeries.findIndex(function(show) {
       return show.id === series[i].show.id;
     });
     const isFav = index !== -1;
@@ -64,11 +67,13 @@ function paintSeries() {
       serieContainer.setAttribute('class', 'js-serie-container');
     }
     listContainer.appendChild(serieContainer);
+
     const title = document.createElement('h3');
     title.setAttribute('class', 'show__title');
     const titleText = document.createTextNode(`${series[i].show.name}`);
     title.appendChild(titleText);
     serieContainer.appendChild(title);
+
     const img = document.createElement('img');
     if (series[i].show.image === null) {
       img.setAttribute(
@@ -81,14 +86,18 @@ function paintSeries() {
     serieContainer.appendChild(img);
   }
   listenFavs();
+  listenerRemoveFav();
 }
 
-//señalar favoritas
+//FAVORITOS
+
+//señalar favs
 
 function addFavs(ev) {
-  debugger;
+  // debugger;
+  console.log(favSeries);
   const clickedId = parseInt(ev.currentTarget.id);
-  const index = favSeries.findIndex(function(show, index) {
+  const index = favSeries.findIndex(function(show) {
     return show.id === clickedId;
   });
   const isFav = index !== -1;
@@ -107,6 +116,7 @@ function addFavs(ev) {
   paintFavs();
   listenFavs();
   paintSeries();
+  listenerRemoveFav();
 }
 
 //pintar favs
@@ -116,12 +126,25 @@ function paintFavs() {
   for (let i = 0; i < favSeries.length; i++) {
     // debugger;
     const serieContainer = document.createElement('li');
+    serieContainer.setAttribute('id', `${favSeries[i].id}`);
+    serieContainer.setAttribute(
+      'class',
+      'js-serie-container fav__serie__colors'
+    );
     favContainer.appendChild(serieContainer);
+
+    const deleteContainer = document.createElement('span');
+    deleteContainer.setAttribute('class', 'js-delete-fav');
+    const deleteX = document.createTextNode('X');
+    deleteContainer.appendChild(deleteX);
+    serieContainer.appendChild(deleteContainer);
+
     const title = document.createElement('h3');
     title.setAttribute('class', 'show__title');
     const titleText = document.createTextNode(`${favSeries[i].name}`);
     title.appendChild(titleText);
     serieContainer.appendChild(title);
+
     const img = document.createElement('img');
     if (favSeries[i].image === null) {
       img.setAttribute(
@@ -132,9 +155,11 @@ function paintFavs() {
       img.setAttribute('src', `${favSeries[i].image.medium}`);
     }
     serieContainer.appendChild(img);
+    resetButton.classList.remove('hidden');
   }
 }
 
+//función listener favs
 function listenFavs() {
   const serieItems = document.querySelectorAll('.js-serie-container');
   for (const serieItem of serieItems) {
@@ -142,6 +167,41 @@ function listenFavs() {
   }
 }
 
+//BOTÓN RESET
+
+function resetFav(ev) {
+  ev.preventDefault();
+  favSeries.splice(0, favSeries.length);
+  resetButton.classList.add('hidden');
+  localStorage.removeItem('favSeries');
+  paintFavs();
+  paintSeries();
+}
+
+resetButton.addEventListener('click', resetFav);
+
+//REMOVE FAV
+
+function listenerRemoveFav() {
+  const favItems = document.querySelectorAll('.fav__serie__colors');
+  for (const favItem of favItems) {
+    favItem.addEventListener('click', removeFav);
+  }
+}
+function removeFav(ev) {
+  debugger;
+  const clickedId = parseInt(ev.currentTarget.id);
+  const index = favSeries.findIndex(function(show) {
+    return show.id === clickedId;
+  });
+  const isFav = index !== -1;
+  if (isFav === true) {
+    favSeries.splice(index, 1);
+  }
+  setLocalStorage();
+}
+
+// HANDLER
 function handler(ev) {
   ev.preventDefault();
   getServerData();

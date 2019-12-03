@@ -1,6 +1,6 @@
 body {
   background-color: whitesmoke;
-  margin: 0;
+  padding: 20px;
   height: 100vh;
 }
 .header__title {
@@ -30,37 +30,55 @@ body {
   padding: 20px;
   width: 100%;
   list-style: none;
+  border: blue 2px solid;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   &__title {
     font-family: Raleway;
     color: rgb(67, 67, 238);
     font-size: 30px;
   }
   &__info {
+    border: grey 2px solid;
     background-color: rgb(80, 125, 207);
     font-family: Raleway;
     color: white;
     font-size: 20px;
-    text-align: center;
+    align-items: center;
+    list-style: none;
   }
 }
-
+.js-serie-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
 .list__container {
   padding: 20px;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border: green 2px solid;
   &__title {
     font-family: Raleway;
     color: rgb(67, 67, 238);
     font-size: 30px;
+    flex-wrap: wrap;
   }
   &__info {
+    width: 100%;
     // background-color: white;
     font-family: Raleway;
     color: rgb(80, 125, 207);
     font-size: 20px;
-    text-align: center;
+    align-items: center;
+    border: greenyellow solid 2px;
+    list-style: none;
   }
 }
 
@@ -70,4 +88,16 @@ body {
   color: white;
   font-size: 20px;
   text-align: center;
+}
+
+//botón reset
+.js-reset-button {
+  width: 60px;
+  height: 30px;
+  border-radius: 5px;
+  color: rgb(80, 125, 207);
+  font-family: Raleway;
+}
+.hidden {
+  display: none;
 }
