@@ -3,100 +3,142 @@ body {
   padding: 20px;
   height: 100vh;
 }
+
+//HEADER
 .header__title {
   font-family: Poppins;
   color: rgb(74, 74, 216);
   font-size: 40px;
 }
 
+//FORM
 .main__input {
+  margin: 10px;
   height: 30px;
   width: 200px;
   border-radius: 10px;
   text-align: center;
+  font-family: Poppins;
 }
 
 .main__button {
   height: 30px;
   width: 70px;
   border-radius: 5px;
+  text-align: center;
+  font-family: Poppins;
+  color: rgb(74, 74, 216);
 }
+
+//MAIN CONTAINER
 
 .main__container {
   display: flex;
+  text-align: center;
   width: 100%;
 }
+
+//Fav container
+
 .fav__container {
-  padding: 20px;
-  width: 100%;
   list-style: none;
-  border: blue 2px solid;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+
   &__title {
-    font-family: Raleway;
+    font-family: Poppins;
     color: rgb(67, 67, 238);
     font-size: 30px;
   }
   &__info {
-    border: grey 2px solid;
-    background-color: rgb(80, 125, 207);
     font-family: Raleway;
-    color: white;
     font-size: 20px;
     align-items: center;
     list-style: none;
+    padding: 0;
   }
 }
+
+//List container
+
+.list__container {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  &__title {
+    font-family: Poppins;
+    color: rgb(67, 67, 238);
+    font-size: 30px;
+  }
+  &__info {
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: whitesmoke;
+    font-family: Raleway;
+    color: rgb(80, 125, 207);
+    font-size: 20px;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+  }
+}
+
+//TRAS BÚSQUEDA
+
+//Series buscadas
+
 .js-serie-container {
+  height: auto;
+  width: 300px;
+  border-radius: 30px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   align-items: center;
-}
-.list__container {
-  padding: 20px;
-  width: 100%;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  border: green 2px solid;
-  &__title {
-    font-family: Raleway;
-    color: rgb(67, 67, 238);
-    font-size: 30px;
-    flex-wrap: wrap;
-  }
-  &__info {
-    width: 100%;
-    // background-color: white;
-    font-family: Raleway;
-    color: rgb(80, 125, 207);
-    font-size: 20px;
-    align-items: center;
-    border: greenyellow solid 2px;
-    list-style: none;
-  }
+  margin: 20px;
 }
 
+//Series favoritas
 .fav__serie__colors {
+  height: auto;
+  width: auto;
+  border-radius: 30px;
   background-color: rgb(80, 125, 207);
   font-family: Raleway;
   color: white;
   font-size: 20px;
   text-align: center;
 }
+.icon::before {
+  content: "\f1f8";
+  font-family: "fontAwesome";
+  position: absolute;
+  transform: translate(550%, -840%);
+}
 
-//botón reset
+.fav__title,
+.fav__img {
+  width: auto;
+  height: auto;
+  border-radius: 5px;
+}
+
+//BOTÓN RESET
+
 .js-reset-button {
   width: 60px;
   height: 30px;
   border-radius: 5px;
   color: rgb(80, 125, 207);
   font-family: Raleway;
+  margin-left: auto;
+  margin-right: 40px;
 }
 .hidden {
   display: none;

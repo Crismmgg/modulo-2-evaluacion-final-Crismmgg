@@ -39,7 +39,6 @@ function getServerData() {
       paintSeries();
       listenFavs();
       paintFavs();
-      // console.log('traigo datos');
     })
     .catch(function(err) {
       console.log('Error al traer los datos del servidor', err);
@@ -53,7 +52,6 @@ function paintSeries() {
   for (let i = 0; i < series.length; i++) {
     const serieContainer = document.createElement('li');
     serieContainer.setAttribute('id', `${series[i].show.id}`);
-    // debugger;
     const index = favSeries.findIndex(function(show) {
       return show.id === series[i].show.id;
     });
@@ -69,7 +67,6 @@ function paintSeries() {
     listContainer.appendChild(serieContainer);
 
     const title = document.createElement('h3');
-    title.setAttribute('class', 'show__title');
     const titleText = document.createTextNode(`${series[i].show.name}`);
     title.appendChild(titleText);
     serieContainer.appendChild(title);
@@ -94,8 +91,6 @@ function paintSeries() {
 //señalar favs
 
 function addFavs(ev) {
-  // debugger;
-  console.log(favSeries);
   const clickedId = parseInt(ev.currentTarget.id);
   const index = favSeries.findIndex(function(show) {
     return show.id === clickedId;
@@ -110,8 +105,6 @@ function addFavs(ev) {
       }
     }
   }
-  console.log(index);
-  console.log(favSeries);
   setLocalStorage();
   paintFavs();
   listenFavs();
@@ -129,23 +122,18 @@ function paintFavs() {
     serieContainer.setAttribute('id', `${favSeries[i].id}`);
     serieContainer.setAttribute(
       'class',
-      'js-serie-container fav__serie__colors'
+      'js-serie-container fav__serie__colors icon'
     );
     favContainer.appendChild(serieContainer);
 
-    const deleteContainer = document.createElement('span');
-    deleteContainer.setAttribute('class', 'js-delete-fav');
-    const deleteX = document.createTextNode('X');
-    deleteContainer.appendChild(deleteX);
-    serieContainer.appendChild(deleteContainer);
-
     const title = document.createElement('h3');
-    title.setAttribute('class', 'show__title');
+    title.setAttribute('class', 'fav__title');
     const titleText = document.createTextNode(`${favSeries[i].name}`);
     title.appendChild(titleText);
     serieContainer.appendChild(title);
 
     const img = document.createElement('img');
+    img.setAttribute('class', 'fav__img');
     if (favSeries[i].image === null) {
       img.setAttribute(
         'src',
@@ -160,6 +148,7 @@ function paintFavs() {
 }
 
 //función listener favs
+
 function listenFavs() {
   const serieItems = document.querySelectorAll('.js-serie-container');
   for (const serieItem of serieItems) {
@@ -188,8 +177,8 @@ function listenerRemoveFav() {
     favItem.addEventListener('click', removeFav);
   }
 }
+
 function removeFav(ev) {
-  debugger;
   const clickedId = parseInt(ev.currentTarget.id);
   const index = favSeries.findIndex(function(show) {
     return show.id === clickedId;
