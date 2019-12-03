@@ -2,7 +2,7 @@
 
 Hemos desarrollado una aplicación web de búsqueda de series de TV, que nos permite des/marcar las series como favoritas y guardarlas en local storage, para que puedas acceder a tus series favoritas incluso al recargar la página.
 
-Los hitos del ejercicio son los siguientes:
+Los hitos son los siguientes:
 
 1. Estructura básica:
    La aplicación de búsqueda de series consta de dos partes:
